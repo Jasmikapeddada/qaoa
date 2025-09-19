@@ -1,0 +1,1035 @@
+{
+  "project_overview": {
+    "name": "QuantumLeap - Quantum-Inspired Portfolio Optimization Platform",
+    "description": "A sophisticated web application that leverages quantum-inspired algorithms (QAOA) to solve complex portfolio optimization problems. The platform provides both classical and quantum approaches to finding optimal investment strategies for Indian stock markets.",
+    "technology_stack": {
+      "frontend": ["HTML5", "CSS3", "JavaScript (ES6+)", "Plotly.js"],
+      "backend": ["Python 3.8+", "Flask", "Qiskit", "NumPy", "Pandas", "SciPy"],
+      "quantum_computing": ["Qiskit", "QAOA Algorithm", "QUBO Formulation"],
+      "data_visualization": ["Plotly.js", "Interactive Charts", "Real-time Updates"],
+      "styling": ["Custom CSS", "Glass Morphism", "Gradient Effects", "Responsive Design"]
+    },
+    "target_audience": "Individual investors, financial analysts, portfolio managers, and anyone interested in advanced portfolio optimization techniques",
+    "key_features": [
+      "Quantum-inspired portfolio optimization using QAOA",
+      "Interactive real-time visualizations",
+      "Comprehensive financial analysis",
+      "Indian stock market focus",
+      "Classical vs Quantum comparison",
+      "Historical backtesting capabilities",
+      "User-friendly interface with advanced controls"
+    ]
+  },
+  "website_structure": {
+    "total_pages": 2,
+    "main_pages": [
+      {
+        "page_name": "Home Page (index.html)",
+        "purpose": "Landing page with company information, technology overview, and navigation to optimizer",
+        "sections": [
+          {
+            "section_id": "home",
+            "section_name": "Hero Section",
+            "content": {
+              "title": "The Future of Portfolio Optimization. Now within reach.",
+              "subtitle": "Leverage the power of Quantum-Inspired AI to navigate market complexity and discover your optimal investment strategy.",
+              "cta_button": "Launch the Optimizer",
+              "visual_elements": ["Animated quantum particles", "Gradient text effects", "Floating animations"]
+            }
+          },
+          {
+            "section_id": "technology",
+            "section_name": "Technology Section",
+            "content": {
+              "title": "Quantum-Inspired Technology",
+              "cards": [
+                {
+                  "icon": "fas fa-atom",
+                  "title": "QAOA Algorithm",
+                  "description": "Quantum Approximate Optimization Algorithm leverages quantum principles to solve complex portfolio optimization problems."
+                },
+                {
+                  "icon": "fas fa-brain",
+                  "title": "AI-Powered Analysis",
+                  "description": "Advanced machine learning models provide deep insights into market patterns and risk assessment."
+                },
+                {
+                  "icon": "fas fa-chart-line",
+                  "title": "Real-Time Optimization",
+                  "description": "Dynamic portfolio rebalancing based on live market data and changing risk parameters."
+                }
+              ]
+            }
+          },
+          {
+            "section_id": "how-to",
+            "section_name": "User Guide Section",
+            "content": {
+              "title": "How It Works",
+              "steps": [
+                {
+                  "step_number": 1,
+                  "title": "Select Assets",
+                  "description": "Choose from a comprehensive database of Indian stocks and securities."
+                },
+                {
+                  "step_number": 2,
+                  "title": "Configure Strategy",
+                  "description": "Set your investment budget, risk tolerance, and optimization parameters."
+                },
+                {
+                  "step_number": 3,
+                  "title": "Run Optimization",
+                  "description": "Our quantum-inspired algorithm finds the optimal portfolio allocation."
+                },
+                {
+                  "step_number": 4,
+                  "title": "Analyze Results",
+                  "description": "Review comprehensive analytics and interactive visualizations."
+                }
+              ]
+            }
+          },
+          {
+            "section_id": "about",
+            "section_name": "About Section",
+            "content": {
+              "title": "About QuantumLeap",
+              "tabs": [
+                {
+                  "tab_number": 1,
+                  "title": "The Challenge",
+                  "description": "Every investor, from a seasoned analyst to a curious beginner, faces the same fundamental question: 'How do I build the best possible portfolio?' In a market with thousands of stocks, the number of potential combinations is astronomical, making it impossible to check them all. We knew there had to be a better way."
+                },
+                {
+                  "tab_number": 2,
+                  "title": "Our Origin",
+                  "description": "QuantumLeap was born from this challenge. As a team participating in the Amravati Quantum Hackathon, we wanted to build something that was not just technically impressive, but genuinely useful. We were driven to create a tool that could navigate this immense complexity and deliver truly optimized results to the user."
+                },
+                {
+                  "tab_number": 3,
+                  "title": "Our Mission",
+                  "description": "By translating the financial goal of maximizing risk-adjusted returns into a quantum-ready format, our application uses the QAOA algorithm to intelligently search for optimal solutions that classical methods would miss. Our mission is to democratize access to sophisticated financial tools and empower users to make smarter, data-driven investment decisions."
+                }
+              ]
+            }
+          },
+          {
+            "section_id": "contact",
+            "section_name": "Contact Section",
+            "content": {
+              "title": "Get In Touch",
+              "layout": "Two-column layout with contact form and information",
+              "form_fields": [
+                {
+                  "field_name": "name",
+                  "field_type": "text",
+                  "label": "Full Name",
+                  "required": true
+                },
+                {
+                  "field_name": "email",
+                  "field_type": "email",
+                  "label": "Email Address",
+                  "required": true
+                },
+                {
+                  "field_name": "message",
+                  "field_type": "textarea",
+                  "label": "Message",
+                  "placeholder": "Tell us about your investment goals or ask any questions...",
+                  "required": true
+                }
+              ],
+              "contact_info": [
+                {
+                  "icon": "fas fa-envelope",
+                  "label": "Email",
+                  "value": "hello@quantumleap.finance"
+                },
+                {
+                  "icon": "fas fa-phone",
+                  "label": "Phone",
+                  "value": "+91 98765 43210"
+                },
+                {
+                  "icon": "fas fa-map-marker-alt",
+                  "label": "Location",
+                  "value": "Amravati, Maharashtra, India"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "page_name": "Portfolio Optimizer (optimizer.html)",
+        "purpose": "Main application interface for portfolio optimization and analysis",
+        "layout": "Two-column dashboard layout",
+        "sections": [
+          {
+            "section_name": "Control Panel (Left Column - 30% width)",
+            "content": {
+              "title": "Control Panel",
+              "subtitle": "Configure your quantum optimization strategy",
+              "input_sections": [
+                {
+                  "section_name": "Step 1: Select Your Assets",
+                  "features": [
+                    "Search functionality for Indian stocks",
+                    "Dropdown with autocomplete",
+                    "Selected stocks displayed as removable pills",
+                    "Info tooltips for each stock",
+                    "Real-time validation"
+                  ],
+                  "ui_elements": [
+                    "Search input with magnifying glass icon",
+                    "Dropdown menu with filtered results",
+                    "Stock pills with remove buttons",
+                    "Info icons for AI insights"
+                  ]
+                },
+                {
+                  "section_name": "Step 2: Configure Your Strategy",
+                  "parameters": [
+                    {
+                      "parameter_name": "Investment Budget (₹)",
+                      "parameter_type": "number_input",
+                      "default_value": 100000,
+                      "description": "Enter the total amount you wish to invest. This is a soft constraint.",
+                      "tooltip": "Enter the total amount you wish to invest. This is a soft constraint."
+                    },
+                    {
+                      "parameter_name": "Risk Aversion (λ)",
+                      "parameter_type": "slider",
+                      "min_value": 0,
+                      "max_value": 1,
+                      "step": 0.1,
+                      "default_value": 0.5,
+                      "labels": ["Aggressive", "Cautious"],
+                      "description": "Controls the penalty for risk. Higher values create safer, lower-return portfolios.",
+                      "tooltip": "Controls the penalty for risk. Higher values create safer, lower-return portfolios."
+                    },
+                    {
+                      "parameter_name": "Budget Adherence (α)",
+                      "parameter_type": "slider",
+                      "min_value": 0,
+                      "max_value": 1,
+                      "step": 0.1,
+                      "default_value": 0.5,
+                      "labels": ["Flexible", "Strict"],
+                      "description": "Controls how strictly the portfolio must follow the budget. Higher values prioritize hitting the budget target.",
+                      "tooltip": "Controls how strictly the portfolio must follow the budget. Higher values prioritize hitting the budget target."
+                    },
+                    {
+                      "parameter_name": "QAOA Layers (p)",
+                      "parameter_type": "number_input",
+                      "min_value": 1,
+                      "max_value": 20,
+                      "default_value": 5,
+                      "description": "Number of layers in the quantum circuit. More layers can yield better results but increase computation time.",
+                      "tooltip": "Number of layers in the quantum circuit. More layers can yield better results but increase computation time."
+                    }
+                  ]
+                }
+              ],
+              "action_button": {
+                "text": "Run Quantum Optimization",
+                "icon": "fas fa-play",
+                "styling": "Full-width button with glow effect"
+              }
+            }
+          },
+          {
+            "section_name": "Analysis Dashboard (Right Column - 70% width)",
+            "content": {
+              "states": [
+                {
+                  "state_name": "Initial State",
+                  "description": "Welcome screen with instructions",
+                  "elements": [
+                    "Large chart icon",
+                    "Welcome message",
+                    "Instructions for getting started"
+                  ]
+                },
+                {
+                  "state_name": "Loading State",
+                  "description": "Quantum optimization in progress",
+                  "elements": [
+                    "Progress bar with percentage",
+                    "Step-by-step progress messages",
+                    "Quantum particle animation",
+                    "Loading messages for each optimization step"
+                  ],
+                  "loading_steps": [
+                    "Step 1/7: Fetching historical data for selected assets...",
+                    "Step 2/7: Calculating financial metrics (returns, volatility, covariance)...",
+                    "Step 3/7: Running classical brute-force benchmark for all combinations...",
+                    "Step 4/7: Formulating the quantum-ready QUBO model...",
+                    "Step 5/7: Optimizing QAOA quantum circuit parameters...",
+                    "Step 6/7: Sampling optimal portfolios from the quantum state...",
+                    "Step 7/7: Generating final visualizations..."
+                  ]
+                },
+                {
+                  "state_name": "Results State",
+                  "description": "Comprehensive analysis and visualizations",
+                  "components": [
+                    {
+                      "component_name": "AI-Powered Analysis Card",
+                      "features": [
+                        "Generate AI insights button",
+                        "Personalized market analysis",
+                        "Investment recommendations"
+                      ]
+                    },
+                    {
+                      "component_name": "Optimal Portfolio Card",
+                      "metrics": [
+                        "Sharpe Ratio (highlighted in green)",
+                        "Expected Return (highlighted in blue)",
+                        "Volatility (highlighted in purple)",
+                        "Total Cost (highlighted in teal)"
+                      ],
+                      "additional_info": "Selected assets list"
+                    },
+                    {
+                      "component_name": "Top 10 Portfolios Table",
+                      "columns": [
+                        "Rank",
+                        "Selected Assets",
+                        "Sharpe Ratio",
+                        "Return",
+                        "Volatility",
+                        "Cost (₹)"
+                      ],
+                      "features": [
+                        "Sortable columns",
+                        "Hover effects",
+                        "Color-coded values",
+                        "Responsive design"
+                      ]
+                    },
+                    {
+                      "component_name": "Interactive Visualizations",
+                      "tabs": [
+                        {
+                          "tab_name": "Brute-Force Analysis",
+                          "charts": [
+                            "All Brute-Force Portfolios (Risk vs. Return)",
+                            "All Portfolios Colored by Sharpe Ratio",
+                            "Efficient Frontier"
+                          ]
+                        },
+                        {
+                          "tab_name": "QUBO vs. Sharpe",
+                          "charts": [
+                            "QUBO Value vs. Sharpe Ratio (Validation Plot)"
+                          ],
+                          "features": [
+                            "Interactive legend",
+                            "Component breakdown",
+                            "Hover tooltips"
+                          ]
+                        },
+                        {
+                          "tab_name": "Cost Distribution",
+                          "charts": [
+                            "Portfolio Cost Distribution Histogram"
+                          ],
+                          "features": [
+                            "Budget target lines",
+                            "Comparison between methods",
+                            "Statistical analysis"
+                          ]
+                        },
+                        {
+                          "tab_name": "Historical Back Testing",
+                          "charts": [
+                            "Top 10 Portfolios (Lowest QUBO) vs. Nifty 50",
+                            "Top 10 Portfolios (By Sharpe Ratio) vs. Nifty 50"
+                          ],
+                          "features": [
+                            "Time series analysis",
+                            "Benchmark comparison",
+                            "Performance metrics"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "design_system": {
+    "color_palette": {
+      "primary_colors": {
+        "blue": "#3b82f6",
+        "purple": "#8b5cf6",
+        "violet": "#a855f7"
+      },
+      "accent_colors": {
+        "green": "#22c55e",
+        "teal": "#14b8a6",
+        "orange": "#f97316"
+      },
+      "background_colors": {
+        "dark_blue": "#1e1b4b",
+        "darker_blue": "#312e81",
+        "purple_gradient": "#581c87"
+      },
+      "text_colors": {
+        "primary": "#f5f5f5",
+        "secondary": "#a1a1aa",
+        "muted": "#71717a"
+      }
+    },
+    "typography": {
+      "primary_font": "Poppins",
+      "secondary_font": "Source Sans Pro",
+      "monospace_font": "Source Code Pro",
+      "font_weights": {
+        "light": 400,
+        "medium": 600,
+        "bold": 700,
+        "extra_bold": 800
+      }
+    },
+    "visual_effects": {
+      "glass_morphism": {
+        "background": "rgba(30, 27, 75, 0.6)",
+        "backdrop_filter": "blur(20px)",
+        "border": "1px solid rgba(59, 130, 246, 0.3)",
+        "border_radius": "16px",
+        "box_shadow": "0 8px 32px rgba(59, 130, 246, 0.2)"
+      },
+      "gradient_text": {
+        "background": "linear-gradient(135deg, #3b82f6, #8b5cf6, #a855f7)",
+        "webkit_background_clip": "text",
+        "webkit_text_fill_color": "transparent"
+      },
+      "glow_effects": {
+        "hover_glow": "0 0 20px rgba(59, 130, 246, 0.6)",
+        "button_glow": "0 12px 40px rgba(59, 130, 246, 0.4)",
+        "transition": "all 0.3s ease"
+      },
+      "animations": {
+        "fade_in_up": "fadeInUp 1s ease-out",
+        "float": "float 20s linear infinite",
+        "rotate": "rotate 4s linear infinite",
+        "pulse": "pulse 2s ease-in-out infinite",
+        "logo_particle_orbit": "logoParticleOrbit 6s linear infinite"
+      }
+    },
+    "layout_principles": {
+      "container_max_width": "1200px",
+      "grid_system": "CSS Grid and Flexbox",
+      "responsive_breakpoints": {
+        "mobile": "480px",
+        "tablet": "768px",
+        "desktop": "1024px",
+        "large_desktop": "1400px"
+      },
+      "spacing_system": {
+        "xs": "0.25rem",
+        "sm": "0.5rem",
+        "md": "1rem",
+        "lg": "1.5rem",
+        "xl": "2rem",
+        "xxl": "3rem"
+      }
+    }
+  },
+  "backend_architecture": {
+    "framework": "Flask with CORS support",
+    "main_components": [
+      {
+        "component_name": "DataManager",
+        "file": "backend/data_manager.py",
+        "purpose": "Handles stock data loading, cleaning, and financial metrics calculation",
+        "key_methods": [
+          "get_available_stocks()",
+          "load_stock_data(tickers)",
+          "compute_financial_metrics(stock_data)",
+          "get_historical_prices(stock_data, lookback_days)"
+        ],
+        "data_processing": [
+          "CSV file parsing with date handling",
+          "Data cleaning and validation",
+          "Return and volatility calculations",
+          "Covariance matrix computation"
+        ]
+      },
+      {
+        "component_name": "PortfolioOptimizer",
+        "file": "backend/optimizer.py",
+        "purpose": "Implements QAOA and classical optimization methods",
+        "key_methods": [
+          "optimize(tickers, expected_returns, covariance_matrix, prices, ...)",
+          "_formulate_qubo(...)",
+          "_run_qaoa_optimization(...)",
+          "_run_classical_optimization(...)",
+          "_evaluate_portfolios(...)"
+        ],
+        "optimization_algorithms": [
+          "QAOA (Quantum Approximate Optimization Algorithm)",
+          "QUBO formulation for portfolio optimization",
+          "Classical brute-force for small problems",
+          "Random sampling for larger problems",
+          "Greedy algorithm as QAOA fallback"
+        ]
+      },
+      {
+        "component_name": "VisualizationDataGenerator",
+        "file": "backend/visualization.py",
+        "purpose": "Generates data for interactive visualizations",
+        "key_methods": [
+          "generate_visualization_data(...)",
+          "_generate_budget_distribution_data(...)",
+          "_generate_qubo_vs_sharpe_data(...)",
+          "_generate_efficient_frontier_data(...)",
+          "_generate_historical_backtest_data(...)"
+        ],
+        "visualization_types": [
+          "Budget distribution histograms",
+          "QUBO vs Sharpe ratio scatter plots",
+          "Efficient frontier curves",
+          "Risk-return scatter plots",
+          "Historical backtesting line charts"
+        ]
+      }
+    ],
+    "api_endpoints": [
+      {
+        "endpoint": "GET /health",
+        "purpose": "Health check endpoint",
+        "response": {
+          "status": "ok",
+          "timestamp": "ISO datetime",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "endpoint": "GET /stocks",
+        "purpose": "Get list of available stock tickers",
+        "response": {
+          "stocks": ["array of ticker symbols"]
+        }
+      },
+      {
+        "endpoint": "POST /optimize",
+        "purpose": "Run portfolio optimization",
+        "request_body": {
+          "tickers": ["array of stock symbols"],
+          "budget": "number (default: 100000)",
+          "risk_aversion": "number (0-1, default: 0.5)",
+          "return_weight": "number (default: 1.0)",
+          "budget_penalty": "number (default: 1.0)",
+          "min_assets": "number (default: 0)",
+          "min_assets_penalty": "number (default: 0.0)",
+          "reps": "number (default: 3)",
+          "shots": "number (default: 1000)",
+          "backend": "string (default: 'aer_simulator')",
+          "risk_free_rate": "number (default: 0.02)"
+        },
+        "response": {
+          "top_portfolios": [
+            {
+              "assets": ["array of selected assets"],
+              "weights": ["array of asset weights"],
+              "return": "number (expected return)",
+              "risk": "number (volatility)",
+              "sharpe": "number (Sharpe ratio)",
+              "cost": "number (total cost)",
+              "qubo_value": "number (QUBO objective value)"
+            }
+          ],
+          "plots": {
+            "budget_distribution": "histogram data",
+            "qubo_vs_sharpe": "scatter plot data",
+            "efficient_frontier": "frontier curve data",
+            "brute_force": "scatter plot data",
+            "historical_backtest": "time series data"
+          }
+        }
+      },
+      {
+        "endpoint": "GET /jobs/{job_id}",
+        "purpose": "Check status of asynchronous optimization jobs",
+        "response": {
+          "status": "completed|running|failed|not_found",
+          "result": "optimization result (if completed)",
+          "message": "status message"
+        }
+      }
+    ],
+    "data_management": {
+      "data_directory": "backend/data/",
+      "supported_formats": ["CSV"],
+      "required_columns": ["Date", "Close"],
+      "data_validation": [
+        "Minimum 60 trading days required",
+        "Date format: DD-MM-YYYY or YYYY-MM-DD",
+        "Numeric validation for price data",
+        "Missing data handling"
+      ],
+      "financial_calculations": [
+        "Daily returns calculation",
+        "Annualized expected returns (mean × 252)",
+        "Annualized covariance matrix (cov × 252)",
+        "Sharpe ratio calculation with risk-free rate",
+        "Portfolio risk and return computation"
+      ]
+    }
+  },
+  "frontend_functionality": {
+    "javascript_modules": {
+      "main_script": "script.js",
+      "key_functions": [
+        {
+          "function_name": "initializeNavigation()",
+          "purpose": "Handle smooth scrolling and active navigation highlighting"
+        },
+        {
+          "function_name": "initializeStockSearch()",
+          "purpose": "Manage stock search, selection, and dropdown functionality"
+        },
+        {
+          "function_name": "runOptimization()",
+          "purpose": "Execute portfolio optimization via API call"
+        },
+        {
+          "function_name": "initializeCharts()",
+          "purpose": "Initialize and render interactive visualizations"
+        },
+        {
+          "function_name": "initializeTooltips()",
+          "purpose": "Handle tooltip display and positioning"
+        },
+        {
+          "function_name": "initializeTabs()",
+          "purpose": "Manage tab switching in visualization section"
+        }
+      ]
+    },
+    "interactive_features": [
+      {
+        "feature_name": "Stock Search and Selection",
+        "description": "Real-time search with autocomplete, stock pill management",
+        "ui_elements": [
+          "Search input with magnifying glass icon",
+          "Dropdown with filtered results",
+          "Selected stock pills with remove buttons",
+          "Info tooltips for AI insights"
+        ]
+      },
+      {
+        "feature_name": "Parameter Configuration",
+        "description": "Interactive sliders and inputs for optimization parameters",
+        "ui_elements": [
+          "Number inputs for budget and QAOA layers",
+          "Range sliders for risk aversion and budget adherence",
+          "Real-time parameter validation",
+          "Helpful tooltips for each parameter"
+        ]
+      },
+      {
+        "feature_name": "Progress Tracking",
+        "description": "Real-time progress updates during optimization",
+        "ui_elements": [
+          "Animated progress bar",
+          "Step-by-step status messages",
+          "Quantum particle animation",
+          "Loading state management"
+        ]
+      },
+      {
+        "feature_name": "Interactive Visualizations",
+        "description": "Plotly.js powered charts with hover effects and interactions",
+        "chart_types": [
+          "Scatter plots with color coding",
+          "Histograms with budget bands",
+          "Line charts for time series",
+          "Efficient frontier curves"
+        ],
+        "interactions": [
+          "Hover tooltips with detailed information",
+          "Zoom and pan capabilities",
+          "Legend toggling",
+          "Data point selection"
+        ]
+      },
+      {
+        "feature_name": "Tab Management",
+        "description": "Organized visualization tabs with smooth transitions",
+        "tabs": [
+          "Brute-Force Analysis",
+          "QUBO vs. Sharpe",
+          "Cost Distribution",
+          "Historical Back Testing"
+        ]
+      }
+    ],
+    "state_management": {
+      "global_variables": [
+        "currentDashboardState",
+        "selectedStocks",
+        "optimizationProgress",
+        "stockDatabase"
+      ],
+      "state_transitions": [
+        "initial → loading → results",
+        "results → loading → results (re-optimization)"
+      ]
+    }
+  },
+  "data_flow": {
+    "optimization_workflow": [
+      {
+        "step": 1,
+        "name": "User Input Collection",
+        "description": "Collect selected stocks and optimization parameters from UI",
+        "data_sources": ["Stock search input", "Parameter sliders", "Budget input"]
+      },
+      {
+        "step": 2,
+        "name": "Data Validation",
+        "description": "Validate user inputs and check stock availability",
+        "validation_rules": [
+          "Minimum 2 stocks required",
+          "Valid stock symbols only",
+          "Positive budget value"
+        ]
+      },
+      {
+        "step": 3,
+        "name": "Stock Data Loading",
+        "description": "Load historical data for selected stocks from CSV files",
+        "data_processing": [
+          "Parse CSV files with date handling",
+          "Clean and validate price data",
+          "Calculate daily returns",
+          "Compute financial metrics"
+        ]
+      },
+      {
+        "step": 4,
+        "name": "QUBO Formulation",
+        "description": "Convert portfolio optimization problem to QUBO format",
+        "mathematical_components": [
+          "Return maximization term",
+          "Risk minimization term",
+          "Budget constraint penalty",
+          "Minimum assets constraint"
+        ]
+      },
+      {
+        "step": 5,
+        "name": "QAOA Optimization",
+        "description": "Run quantum-inspired optimization using QAOA algorithm",
+        "implementation": [
+          "Greedy algorithm as QAOA simulation",
+          "Multiple portfolio sampling",
+          "QUBO value evaluation",
+          "Solution ranking"
+        ]
+      },
+      {
+        "step": 6,
+        "name": "Classical Benchmark",
+        "description": "Run classical optimization for comparison",
+        "methods": [
+          "Brute force for small problems (≤15 assets)",
+          "Random sampling for larger problems",
+          "Portfolio evaluation and ranking"
+        ]
+      },
+      {
+        "step": 7,
+        "name": "Portfolio Evaluation",
+        "description": "Calculate financial metrics for all generated portfolios",
+        "metrics": [
+          "Expected return",
+          "Risk (volatility)",
+          "Sharpe ratio",
+          "Total cost",
+          "QUBO objective value"
+        ]
+      },
+      {
+        "step": 8,
+        "name": "Results Ranking",
+        "description": "Sort portfolios by Sharpe ratio and select top performers",
+        "selection_criteria": [
+          "Highest Sharpe ratio",
+          "Portfolio diversity",
+          "Budget adherence",
+          "Risk-return balance"
+        ]
+      },
+      {
+        "step": 9,
+        "name": "Visualization Data Generation",
+        "description": "Generate data for interactive charts and visualizations",
+        "visualization_types": [
+          "Budget distribution histogram",
+          "QUBO vs Sharpe scatter plot",
+          "Efficient frontier curve",
+          "Risk-return scatter plots",
+          "Historical backtesting charts"
+        ]
+      },
+      {
+        "step": 10,
+        "name": "Results Display",
+        "description": "Update UI with optimization results and visualizations",
+        "ui_updates": [
+          "Portfolio metrics display",
+          "Top portfolios table",
+          "Interactive chart rendering",
+          "Tab-based organization"
+        ]
+      }
+    ]
+  },
+  "technical_requirements": {
+    "dependencies": {
+      "python_packages": [
+        "flask==2.3.3",
+        "flask-cors==4.0.0",
+        "numpy==1.24.3",
+        "pandas==2.0.3",
+        "scipy==1.11.2",
+        "qiskit==0.44.1",
+        "qiskit-aer==0.12.2",
+        "matplotlib==3.7.2",
+        "plotly==5.16.1",
+        "gunicorn==21.2.0",
+        "python-dotenv==1.0.0",
+        "celery==5.3.1",
+        "redis==4.6.0"
+      ],
+      "javascript_libraries": [
+        "Plotly.js 2.24.1",
+        "Font Awesome 6.4.0",
+        "Google Fonts (Poppins, Source Sans Pro)"
+      ]
+    },
+    "system_requirements": {
+      "python_version": "3.8+",
+      "memory": "Minimum 4GB RAM recommended",
+      "storage": "500MB for application and data",
+      "browser_support": [
+        "Chrome 80+",
+        "Firefox 75+",
+        "Safari 13+",
+        "Edge 80+"
+      ]
+    },
+    "deployment_considerations": {
+      "development": "Flask development server",
+      "production": "Gunicorn WSGI server",
+      "cors_setup": "Enabled for cross-origin requests",
+      "static_files": "Served from root directory",
+      "data_directory": "backend/data/ for CSV files"
+    }
+  },
+  "file_structure": {
+    "root_directory": "QuantumLeap1/",
+    "files": [
+      {
+        "file": "index.html",
+        "type": "HTML",
+        "purpose": "Main landing page with company information and navigation"
+      },
+      {
+        "file": "optimizer.html",
+        "type": "HTML",
+        "purpose": "Portfolio optimization application interface"
+      },
+      {
+        "file": "style.css",
+        "type": "CSS",
+        "purpose": "Complete styling with glass morphism and responsive design"
+      },
+      {
+        "file": "script.js",
+        "type": "JavaScript",
+        "purpose": "Frontend functionality and API integration"
+      },
+      {
+        "file": "app.py",
+        "type": "Python",
+        "purpose": "Main Flask application with API endpoints"
+      },
+      {
+        "file": "requirements.txt",
+        "type": "Text",
+        "purpose": "Python package dependencies"
+      },
+      {
+        "file": "run_backend.py",
+        "type": "Python",
+        "purpose": "Backend server startup script"
+      }
+    ],
+    "backend_directory": "backend/",
+    "backend_files": [
+      {
+        "file": "data_manager.py",
+        "purpose": "Stock data loading and financial calculations"
+      },
+      {
+        "file": "optimizer.py",
+        "purpose": "QAOA and classical optimization algorithms"
+      },
+      {
+        "file": "visualization.py",
+        "purpose": "Interactive visualization data generation"
+      },
+      {
+        "file": "sample_data.py",
+        "purpose": "Sample data generation for testing"
+      },
+      {
+        "file": "api_response_schema.py",
+        "purpose": "API response documentation and validation"
+      },
+      {
+        "file": "test_backend.py",
+        "purpose": "Backend testing suite"
+      },
+      {
+        "file": "README.md",
+        "purpose": "Backend documentation and setup instructions"
+      }
+    ],
+    "data_directory": "backend/data/",
+    "data_files": [
+      {
+        "description": "CSV files for Indian stock data",
+        "format": "CSV with Date and Close columns",
+        "naming_convention": "{TICKER}.csv",
+        "examples": ["TCS.csv", "INFY.csv", "RELIANCE.csv", "HDFCBANK.csv"]
+      }
+    ]
+  },
+  "key_algorithms": {
+    "qaoa_algorithm": {
+      "name": "Quantum Approximate Optimization Algorithm",
+      "purpose": "Quantum-inspired portfolio optimization",
+      "implementation": "Greedy algorithm simulation of QAOA",
+      "qubo_formulation": {
+        "objective_function": "minimize x^T Q x",
+        "components": [
+          "Return maximization: -α * μ^T * x",
+          "Risk minimization: λ * x^T * Σ * x",
+          "Budget constraint: A * (p^T * x - budget)^2",
+          "Minimum assets: B * (sum(x) - min_k)^2"
+        ]
+      }
+    },
+    "classical_methods": {
+      "brute_force": {
+        "description": "Exhaustive search for small problems (≤15 assets)",
+        "complexity": "O(2^n)",
+        "use_case": "Small portfolio optimization"
+      },
+      "random_sampling": {
+        "description": "Random portfolio generation for larger problems",
+        "samples": "1000 random portfolios",
+        "use_case": "Large portfolio optimization"
+      }
+    },
+    "financial_calculations": {
+      "expected_returns": "Mean daily return × 252 trading days",
+      "covariance_matrix": "Covariance of returns × 252 trading days",
+      "sharpe_ratio": "(Expected return - Risk-free rate) / Volatility",
+      "portfolio_risk": "sqrt(w^T * Σ * w)",
+      "portfolio_return": "w^T * μ"
+    }
+  },
+  "user_experience": {
+    "navigation_flow": [
+      "Land on home page",
+      "Learn about technology and company",
+      "Click 'Launch Optimizer' button",
+      "Navigate to optimizer page",
+      "Select stocks and configure parameters",
+      "Run optimization",
+      "Analyze results and visualizations",
+      "Return to home page if needed"
+    ],
+    "interaction_patterns": [
+      {
+        "pattern": "Progressive disclosure",
+        "description": "Information revealed step by step to avoid overwhelming users"
+      },
+      {
+        "pattern": "Real-time feedback",
+        "description": "Immediate visual feedback for all user actions"
+      },
+      {
+        "pattern": "Contextual help",
+        "description": "Tooltips and info icons provide guidance without cluttering UI"
+      },
+      {
+        "pattern": "Responsive design",
+        "description": "Seamless experience across all device sizes"
+      }
+    ],
+    "accessibility_features": [
+      "Keyboard navigation support",
+      "High contrast color schemes",
+      "Readable font sizes",
+      "Alt text for images",
+      "ARIA labels for interactive elements"
+    ]
+  },
+  "performance_considerations": {
+    "optimization_limits": {
+      "minimum_data_points": 60 trading days,
+      "computation_timeout": "30 seconds",
+      "memory_usage": "Optimized for 4GB+ systems"
+    },
+    "caching_strategies": [
+      "Stock data caching in memory",
+      "Computed metrics caching",
+      "Visualization data caching"
+    ],
+    "error_handling": [
+      "Graceful degradation for missing data",
+      "User-friendly error messages",
+      "Fallback to classical methods if quantum fails",
+      "Input validation and sanitization"
+    ]
+  },
+  "deployment_instructions": {
+    "development_setup": [
+      "1. Clone repository",
+      "2. Install Python dependencies: pip install -r requirements.txt",
+      "3. Place stock CSV files in backend/data/ directory",
+      "4. Run backend: python app.py",
+      "5. Open index.html in web browser"
+    ],
+    "production_deployment": [
+      "1. Install production dependencies",
+      "2. Configure Gunicorn WSGI server",
+      "3. Set up reverse proxy (nginx)",
+      "4. Configure SSL certificates",
+      "5. Set up monitoring and logging"
+    ],
+    "data_preparation": [
+      "1. Obtain stock data in CSV format",
+      "2. Ensure Date and Close columns exist",
+      "3. Format dates as DD-MM-YYYY or YYYY-MM-DD",
+      "4. Place files in backend/data/ with naming convention {TICKER}.csv"
+    ]
+  }
+}

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumLeap - Portfolio Optimizer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+</head>
+<body>
+    <!-- Navigation for optimizer page -->
+    <nav class="navbar glass-card">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-particles-container">
+                    <div class="logo-particle"></div>
+                    <div class="logo-particle"></div>
+                    <div class="logo-particle"></div>
+                    <div class="logo-particle"></div>
+                    <div class="logo-particle"></div>
+                    <div class="logo-particle"></div>
+                </div>
+                <span class="gradient-text">QuantumLeap</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Optimizer Dashboard -->
+    <section id="optimizer" class="optimizer-section">
+        <div class="optimizer-container">
+            <!-- Left Column: Control Panel -->
+            <div class="control-panel">
+                <div class="control-card glass-card">
+                    <div class="control-header">
+                        <h2 class="control-title">Control Panel</h2>
+                        <p class="control-subtitle">Configure your quantum optimization strategy</p>
+                    </div>
+
+                    <!-- Stock Selection -->
+                    <div class="input-section">
+                        <h3 class="section-label">
+                            Step 1: Select Your Assets
+                            <span class="info-icon" data-tooltip="Select Indian stocks for optimization">ⓘ</span>
+                        </h3>
+                        <div class="search-container">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="stock-search" placeholder="Search Indian stocks (e.g., 'RELIANCE')..." class="search-input">
+                            <div id="search-dropdown" class="search-dropdown hidden"></div>
+                        </div>
+                        <div id="selected-stocks" class="selected-stocks">
+                            <div class="stock-pill">
+                                RELIANCE.NS
+                                <span class="info-icon stock-info" data-tooltip="Get AI insights for RELIANCE">ⓘ</span>
+                                <span class="remove-stock">×</span>
+                            </div>
+                            <div class="stock-pill">
+                                TCS.NS
+                                <span class="info-icon stock-info" data-tooltip="Get AI insights for TCS">ⓘ</span>
+                                <span class="remove-stock">×</span>
+                            </div>
+                            <div class="stock-pill">
+                                INFY.NS
+                                <span class="info-icon stock-info" data-tooltip="Get AI insights for INFY">ⓘ</span>
+                                <span class="remove-stock">×</span>
+                            </div>
+                        </div>
+                        <p class="input-hint">Add multiple assets for optimization</p>
+                    </div>
+
+                    <!-- Parameter Configuration -->
+                    <div class="input-section">
+                        <h3 class="section-label">Step 2: Configure Your Strategy</h3>
+                        
+                        <!-- Budget Input -->
+                        <div class="parameter-group">
+                            <label class="parameter-label">
+                                Investment Budget (₹)
+                                <span class="info-icon" data-tooltip="The total amount of money you intend to invest. The optimizer uses this as a target. It will try to build a portfolio with a total cost as close to this number as possible. Enter your total desired investment amount. The 'Budget Penalty' slider will control how strictly this number is followed.">ⓘ</span>
+                            </label>
+                            <input type="number" id="budget" value="100000" class="parameter-input">
+                        </div>
+
+                        <!-- Optimization Objective Dropdown -->
+                        <div class="parameter-group">
+                            <label class="parameter-label">
+                                Optimization Objective
+                                <span class="info-icon" data-tooltip="The primary goal for your portfolio. This sets the overall strategy. It automatically configures 'Risk Aversion' and 'Return Weight' to sensible defaults for your chosen goal. For a balanced approach, choose 'Max Sharpe Ratio'. If your top priority is safety and low volatility, choose 'Min Variance'. If you are aiming for the highest possible growth and are comfortable with high risk, choose 'Max Return'.">ⓘ</span>
+                            </label>
+                            <select id="optimization-objective" class="parameter-input">
+                                <option value="Max Sharpe Ratio">Max Sharpe Ratio</option>
+                                <option value="Min Variance">Min Variance</option>
+                                <option value="Max Return">Max Return</option>
+                            </select>
+                        </div>
+
+                        <!-- Risk-Free Rate -->
+                        <div class="parameter-group">
+                            <label class="parameter-label">
+                                Risk-Free Rate
+                                <span class="info-icon" data-tooltip="The return rate of a theoretically zero-risk investment. It's the baseline used to calculate the Sharpe Ratio, which measures risk-adjusted return. A good practice is to set this to the current yield of a 10-year government bond in your country. For India, a value around 0.07 (for 7%) is a realistic starting point.">ⓘ</span>
+                            </label>
+                            <input type="number" id="risk-free-rate" value="0.07" step="0.01" min="0" max="1" class="parameter-input">
+                        </div>
+
+                        <!-- Risk Aversion Slider -->
+                        <div class="parameter-group">
+                            <label class="parameter-label">
+                                Risk Aversion (λ)
+                                <span class="info-icon" data-tooltip="A penalty for risk (volatility) in the portfolio. This is your personal risk tolerance setting. It directly tells the optimizer how much to prioritize safety over potential returns. Think of it as your comfort level. A value of 1.0 is extremely cautious (like 'Min Variance'). A value of 0.0 ignores risk completely (like 'Max Return'). A value of 0.5 offers a good balance. Start with the default set by your objective and adjust slightly if the suggested portfolio feels too risky or too safe for you.">ⓘ</span>
+                            </label>
+                            <div class="slider-container">
+                                <input type="range" id="risk-aversion" min="0" max="1" step="0.1" value="0.5" class="slider">
+                                <div class="slider-labels">
+                                    <span>Aggressive (0.0)</span>
+                                    <span id="risk-aversion-value" class="slider-value">0.5</span>
+                                    <span>Cautious (1.0)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Return Weight -->
+                        <div class="parameter-group">
+                            <label class="parameter-label">
+                                Return Weight (α)
+                                <span class="info-icon" data-tooltip="A multiplier for the expected return of the portfolio. This knob amplifies the focus on maximizing gains. This value works in balance with 'Risk Aversion'. If you want to push the optimizer to find higher-growth options, even if it means more risk, you can increase this value from its default of 1.0 to something like 1.2 or 1.5.">ⓘ</span>
+                            </label>
+                            <input type="number" id="return-weight" value="1.0" step="0.1" min="0" max="5" class="parameter-input">
+                        </div>
+
+                        <!-- Budget Penalty -->
+                        <div class="parameter-group">
+                            <label class="parameter-label">
+                                Budget Penalty (A)
+                                <span class="info-icon" data-tooltip="A penalty for deviating from your investment budget. It controls how strictly the optimizer must adhere to your target budget. If your budget is a flexible guideline, a lower value like 0.5 is fine. If your budget is a hard limit that you cannot exceed, use a higher value like 2.0 or more to strongly penalize any deviation.">ⓘ</span>
+                            </label>
+                            <input type="number" id="budget-penalty" value="1.0" step="0.1" min="0" max="10" class="parameter-input">
+                        </div>
+
+                        <!-- Minimum Assets Slider -->
+                        <div class="parameter-group">
+                            <label class="parameter-label">
+                                Minimum Assets
+                                <span class="info-icon" data-tooltip="The minimum number of different stocks the portfolio must contain. This is a powerful tool to enforce diversification and prevent the optimizer from putting all its money into just one or two stocks. For a small selection of stocks (e.g., 5-7), setting a minimum of 3 or 4 is a good diversification strategy. This protects you if one of the chosen stocks performs poorly.">ⓘ</span>
+                            </label>
+                            <div class="slider-container">
+                                <input type="range" id="min-assets" min="1" max="30" value="2" class="slider">
+                                <div class="slider-labels">
+                                    <span>1</span>
+                                    <span id="min-assets-value" class="slider-value">2</span>
+                                    <span>30</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Min Assets Penalty -->
+                        <div class="parameter-group">
+                            <label class="parameter-label">
+                                Min Assets Penalty (B)
+                                <span class="info-icon" data-tooltip="The 'enforcer' for the 'Minimum Assets' rule. It applies a penalty if the rule you set above is broken. You can generally leave this at its default of 1.0. If you find the optimizer is still creating portfolios with fewer assets than your minimum, increase this value to 2.0 to enforce the rule more strongly.">ⓘ</span>
+                            </label>
+                            <input type="number" id="min-assets-penalty" value="1.0" step="0.1" min="0" max="10" class="parameter-input">
+                        </div>
+
+                        <!-- Correlation Threshold Slider -->
+                        <div class="parameter-group">
+                            <label class="parameter-label">
+                                Correlation Threshold
+                                <span class="info-icon" data-tooltip="The maximum allowed price correlation between any two stocks in the portfolio. It prevents you from investing in assets that move in lockstep (e.g., two large banking stocks). This is another key diversification tool. A high value (e.g., 0.9) is very permissive. To force the selection of stocks that behave differently, lower this value to 0.6 or 0.5. This can create a more stable portfolio that is less vulnerable to sector-specific downturns.">ⓘ</span>
+                            </label>
+                            <div class="slider-container">
+                                <input type="range" id="correlation-threshold" min="0" max="1" step="0.1" value="0.8" class="slider">
+                                <div class="slider-labels">
+                                    <span>Low (0.0)</span>
+                                    <span id="correlation-threshold-value" class="slider-value">0.8</span>
+                                    <span>High (1.0)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- QAOA Layers -->
+                        <div class="parameter-group">
+                            <label class="parameter-label">
+                                QAOA Layers (p)
+                                <span class="info-icon" data-tooltip="The depth of the quantum circuit. Deeper circuits (more layers) can explore the problem space more thoroughly and potentially find better solutions. Start with a value of 2 or 3. This is often sufficient and keeps computation times low. If you suspect a better solution exists, you can try increasing it to 4 or 5, but be prepared for a longer wait.">ⓘ</span>
+                            </label>
+                            <input type="number" id="qaoa-layers" min="1" max="20" value="3" class="parameter-input small">
+                        </div>
+
+                        <!-- QAOA Shots -->
+                        <div class="parameter-group">
+                            <label class="parameter-label">
+                                QAOA Shots
+                                <span class="info-icon" data-tooltip="The number of times the quantum circuit is run and measured. Quantum computing is probabilistic. More shots give a more accurate statistical picture of the most likely optimal portfolio. The default of 1024 is a good standard for reliable results. You typically do not need to change this.">ⓘ</span>
+                            </label>
+                            <input type="number" id="qaoa-shots" min="100" max="10000" value="1024" class="parameter-input small">
+                        </div>
+
+                        <!-- Backend Selection -->
+                        <div class="parameter-group">
+                            <label class="parameter-label">
+                                Backend
+                                <span class="info-icon" data-tooltip="Where the quantum computation will be executed. The 'Aer Simulator' is fast and runs on this server. 'IBM Quantum Hardware' runs on a real quantum computer, which is slower, may have a queue, and is sensitive to noise. Always use 'Aer Simulator' for general use and when selecting more than 5 tickers. Only use 'IBM Quantum Hardware' for small-scale experiments (2-5 tickers) to see how a real quantum device performs. Using the IBM backend requires a pre-configured API key on the server.">ⓘ</span>
+                            </label>
+                            <select id="backend" class="parameter-input">
+                                <option value="Aer Simulator">Aer Simulator</option>
+                                <option value="IBM Quantum Hardware">IBM Quantum Hardware</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Run Button -->
+                    <button id="run-optimization" class="run-button glow-effect">
+                        <i class="fas fa-play"></i>
+                        Run Quantum Optimization
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column: Analysis Dashboard -->
+            <div class="analysis-dashboard">
+                <!-- Initial State -->
+                <div id="initial-state" class="dashboard-state active">
+                    <div class="welcome-content">
+                        <div class="welcome-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Your advanced portfolio analysis will appear here</h3>
+                        <p>Configure your strategy on the left and run the optimization to begin your quantum-powered investment journey.</p>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="loading-state" class="dashboard-state">
+                    <div class="loading-content glass-card">
+                        <h3 class="loading-title">Quantum Optimization in Progress</h3>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div id="progress-fill" class="progress-fill"></div>
+                            </div>
+                            <div id="progress-text" class="progress-text">0% - Initializing quantum optimization...</div>
+                            <div id="progress-detail" class="progress-detail">Preparing to start optimization process</div>
+                        </div>
+                        <div class="quantum-animation">
+                            <div class="quantum-orbit">
+                                <div class="quantum-particle"></div>
+                                <div class="quantum-particle"></div>
+                                <div class="quantum-particle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results State -->
+                <div id="results-state" class="dashboard-state">
+                    <!-- AI Analysis Card -->
+                    <div class="analysis-card glass-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-sparkles"></i>
+                                AI-Powered Analysis
+                            </h3>
+                        </div>
+                        <div class="ai-analysis-content">
+                            <p class="ai-description">Get personalized insights and market analysis powered by advanced AI.</p>
+                            <div class="ai-button-container">
+                                <button class="ai-button regular-analysis glow-effect">
+                                    <i class="fas fa-database"></i>
+                                    Test Data
+                                </button>
+                                <button class="ai-button google-analysis glow-effect">
+                                    <i class="fab fa-google"></i>
+                                    Google AI Analysis
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Optimal Portfolio Card -->
+                    <div class="results-card glass-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Your Optimal Portfolio (Classical Benchmark)</h3>
+                        </div>
+                        <div class="portfolio-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value text-green">1.84</div>
+                                <div class="metric-label">Sharpe Ratio</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value text-blue">32.5%</div>
+                                <div class="metric-label">Expected Return</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value text-purple">18.2%</div>
+                                <div class="metric-label">Volatility</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value text-teal">₹99,850</div>
+                                <div class="metric-label">Total Cost</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-assets">
+                            <p><strong>Selected Assets:</strong> RELIANCE.NS, TCS.NS, INFY.NS</p>
+                        </div>
+                    </div>
+
+                    <!-- Top 10 Portfolios Table -->
+                    <div class="results-card glass-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Top 10 Quantum-Optimized Portfolios</h3>
+                        </div>
+                        <div class="table-container">
+                            <table class="results-table">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Selected Assets</th>
+                                        <th>Sharpe Ratio</th>
+                                        <th>Return</th>
+                                        <th>Volatility</th>
+                                        <th>Cost (₹)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="rank-cell">#1</td>
+                                        <td>RELIANCE, TCS, INFY</td>
+                                        <td class="text-green">1.84</td>
+                                        <td class="text-blue">32.5%</td>
+                                        <td class="text-purple">18.2%</td>
+                                        <td class="text-teal">₹99,850</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rank-cell">#2</td>
+                                        <td>HDFC, ICICI, SBI</td>
+                                        <td class="text-green">1.72</td>
+                                        <td class="text-blue">28.9%</td>
+                                        <td class="text-purple">16.8%</td>
+                                        <td class="text-teal">₹98,200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rank-cell">#3</td>
+                                        <td>TCS, WIPRO, HCLTECH</td>
+                                        <td class="text-green">1.68</td>
+                                        <td class="text-blue">25.4%</td>
+                                        <td class="text-purple">15.1%</td>
+                                        <td class="text-teal">₹97,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rank-cell">#4</td>
+                                        <td>RELIANCE, HDFC, INFY</td>
+                                        <td class="text-green">1.63</td>
+                                        <td class="text-blue">30.2%</td>
+                                        <td class="text-purple">18.5%</td>
+                                        <td class="text-teal">₹99,100</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rank-cell">#5</td>
+                                        <td>BAJFINANCE, KOTAKBANK</td>
+                                        <td class="text-green">1.58</td>
+                                        <td class="text-blue">27.8%</td>
+                                        <td class="text-purple">17.6%</td>
+                                        <td class="text-teal">₹96,800</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Graphical visualization -->
+                    <div class="results-card glass-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Graphical visualization</h3>
+                        </div>
+                        <div class="tabs-container">
+                            <div class="tabs">
+                                <button class="tab-button active" data-tab="correlation-matrix">Correlation Matrix</button>
+                                <button class="tab-button" data-tab="brute-force">Brute-Force Analysis</button>
+                                <button class="tab-button" data-tab="qubo-sharpe">QUBO vs. Sharpe</button>
+                                <button class="tab-button" data-tab="cost-distribution">Cost Distribution</button>
+                                <button class="tab-button" data-tab="historical-backtesting">Historical Back Testing</button>
+                            </div>
+                            
+                            <!-- Tab Content -->
+                            <div class="tab-content">
+                                <!-- Correlation Matrix Tab -->
+                                <div id="correlation-matrix-tab" class="tab-panel active">
+                                    <div class="charts-grid">
+                                        <div class="chart-container">
+                                            <h4 class="chart-title">Stock Correlation Matrix</h4>
+                                            <div id="chart-correlation-matrix" class="chart-placeholder">
+                                                <img id="img-correlation-matrix" class="static-chart-image" alt="Correlation Matrix" />
+                                                <small>Shows correlation between daily returns</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Brute-Force Analysis Tab -->
+                                <div id="brute-force-tab" class="tab-panel">
+                                    <div class="charts-grid">
+                                        <div class="chart-container">
+                                            <h4 class="chart-title">All Brute-Force Portfolios (Risk vs. Return)</h4>
+                                            <div id="chart-brute-force-scatter" class="chart-placeholder">
+                                                <img id="img-brute-force-scatter" class="static-chart-image" alt="Brute Force Portfolios" />
+                                                <small>Portfolio risk vs return analysis</small>
+                                            </div>
+                                        </div>
+                                        <div class="chart-container">
+                                            <h4 class="chart-title">All Portfolios Colored by Sharpe Ratio</h4>
+                                            <div id="chart-sharpe-colored" class="chart-placeholder">
+                                                <img id="img-sharpe-colored" class="static-chart-image" alt="Sharpe Colored Portfolios" />
+                                                <small>Color intensity represents Sharpe Ratio</small>
+                                            </div>
+                                        </div>
+                                        <div class="chart-container">
+                                            <h4 class="chart-title">Efficient Frontier</h4>
+                                            <div id="chart-efficient-frontier" class="chart-placeholder">
+                                                <img id="img-efficient-frontier" class="static-chart-image" alt="Efficient Frontier" />
+                                                <small>Optimal risk-return combinations</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- QUBO vs. Sharpe Tab -->
+                                <div id="qubo-sharpe-tab" class="tab-panel">
+                                    <div class="chart-container full-width">
+                                        <h4 class="chart-title">QUBO Value vs. Sharpe Ratio (Validation Plot)</h4>
+                                        <div id="chart-qubo-sharpe" class="chart-placeholder large">
+                                            <img id="img-qubo-sharpe" class="static-chart-image" alt="QUBO vs Sharpe Ratio" />
+                                            <small>X-axis: Sharpe Ratio | Y-axis: QUBO Value</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Cost Distribution Tab -->
+                                <div id="cost-distribution-tab" class="tab-panel">
+                                    <div class="chart-container full-width">
+                                        <h4 class="chart-title">Portfolio Cost Distribution</h4>
+                                        <div id="chart-cost-distribution" class="chart-placeholder large">
+                                            <img id="img-cost-distribution" class="static-chart-image" alt="Cost Distribution" />
+                                            <small>Comparison: Brute-Force vs. QAOA Samples</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Historical Back Testing Tab -->
+                                <div id="historical-backtesting-tab" class="tab-panel">
+                                    <div class="charts-grid">
+                                        <div class="chart-container">
+                                            <h4 class="chart-title">Historical Backtest Performance</h4>
+                                            <div id="chart-historical-backtest" class="chart-placeholder">
+                                                <img id="img-historical-backtest" class="static-chart-image" alt="Historical Backtest" />
+                                                <small>₹1,00,000 investment comparison over time</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="tooltip hidden"></div>
+    
+    <!-- Analysis Modal -->
+    <div id="analysis-modal" class="modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2 class="modal-title">Portfolio Analysis</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="analysis-loading">
+                    <div class="spinner"></div>
+                    <p>Generating AI analysis...</p>
+                </div>
+                <div class="analysis-error" style="display: none;">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Error generating analysis. Please try again.</p>
+                </div>
+                <div class="analysis-content" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .slider-value {
+            font-weight: bold;
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            min-width: 40px;
+            text-align: center;
+            display: inline-block;
+        }
+        
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+        }
+    </style>
+    
+    <script src="script.js"></script>
+    <script src="analysis_logic.js"></script>
+</body>
+</html>
